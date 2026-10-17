@@ -1,19 +1,21 @@
-/* Border box declaration 
-https://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
-html {
+html 
+{
   box-sizing: border-box;
 }
 
 *, 
 *:before, 
-*:after {
+*:after
+{
   box-sizing: inherit;
 }
 
-body {
+body 
+{
 	font-family: Arial, Geneva, sans-serif;
 }
-a {
+a 
+{
 	color: #2772B0;
 }
 .wrapper 
@@ -25,19 +27,6 @@ a {
 	background-color: #fff;
 }
 
-h1 
-{
-	text-align: center;
-	margin: 20px 0;
-}
-
-.row-center [class*="col-"]
- {
-	margin-left: 0;
-	text-align: center;
-}
-
-
 div img 
 {
 	width: 100%;
@@ -45,17 +34,33 @@ div img
 }
 
 
+.grid 
+{
+	display: grid;
+	grid-template-columns: 1fr;
 
-.row {
-	display: flex;
-	flex-flow: row wrap;
+	
+	gap: 20px 4%;
+
+	
+	grid-auto-rows: minmax(0, auto);
+
+
+	align-items: stretch;
 }
 
 
+.grid h1 
+{
+	grid-column: 1 / -1;
+	text-align: center;
+	margin: 20px 0 0;
+}
 
-[class*="col-"] {
-	margin-left: 4%;
-	flex: 0 0 92%;
+
+[class*="col-"] 
+{
+	grid-column: 1 / -1;
 }
 
 
@@ -77,44 +82,72 @@ div img
 }
 
 
-
-.row-center {
-	justify-content: center;
+.center-box 
+{
+	text-align: center;
 }
 
-.row-center [class*="col-"] {
-	margin-left: 0;
-}
 
-@media only screen and (min-width: 480px)  {
-	
-  .col-1,
-  .col-2 {
-		flex: 0 0 44%;
+@media only screen and (min-width: 480px)  
+{
+
+	.grid {
+		
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 
+	
+	.col-1,
+	.col-2 {
+		grid-column: span 1;
+	}
 
+	
+	.col-3,
+	.col-4 {
+		grid-column: 1 / -1;
+	}
+
+	
+	.col-2.center-box {
+		grid-column: 1 / -1;
+	}
 
 }
 
 @media only screen and (min-width: 768px) {
-  
- 	.col-1 {
-		flex: 0 0 20%;
-	}
-  
-	.col-2 {
-		flex: 0 0 44%;
-	}
 
-
-	.col-3 {
-		flex: 0 0 68%;
+	.grid 
+	{
+	
+		grid-template-columns: repeat(4, minmax(0, 1fr));
 	}
 
 	
-	.col-4 {
-		flex: 0 0 92%;
+	.col-1 
+	{
+		grid-column: span 1;
+	}
+
+	.col-2 
+	
+		grid-column: span 2;
+	}
+
+	.col-3 
+	{
+		grid-column: span 3;
+	}
+
+	.col-4 
+	{
+		grid-column: span 4;
+	}
+
+	
+	.col-2.center-box 
+	{
+		grid-column: 2 / span 2;
 	}
 
 }
